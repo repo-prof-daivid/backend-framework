@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>kotlin-demo</artifactId>
+	<artifactId>management</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>kotlin-demo</name>
 	<description>Demo project for Spring Boot</description>

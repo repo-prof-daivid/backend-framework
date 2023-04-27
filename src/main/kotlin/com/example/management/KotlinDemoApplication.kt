@@ -1,4 +1,4 @@
-package com.example.kotlindemo
+package com.example.management
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

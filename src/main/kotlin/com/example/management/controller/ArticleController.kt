@@ -1,7 +1,7 @@
-package com.example.kotlindemo.controller
+package com.example.management.controller
 
-import com.example.kotlindemo.model.Article
-import com.example.kotlindemo.repository.ArticleRepository
+import com.example.management.model.Article
+import com.example.management.repository.ArticleRepository
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

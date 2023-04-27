@@ -15,12 +15,12 @@ Build a Restful CRUD API using Kotlin, Spring Boot, Mysql, JPA and Hibernate.
 **1. Clone the application**
 
 ```bash
-git clone https://github.com/callicoder/kotlin-spring-boot-jpa-rest-api-demo.git
+git clone https://github.com/Uni-Turmas-2023-1/backend-framework.git
 ```
 
 **2. Create Mysql database**
 ```bash
-create database kotlin_demo_app
+create database management
 ```
 
 **3. Change mysql username and password as per your installation**
@@ -43,20 +43,6 @@ The app will start running at <http://localhost:8080>.
 
 The app defines following CRUD APIs.
 
-    GET /api/articles
-    
-    POST /api/articles
-    
-    GET /api/articles/{id}
-    
-    PUT /api/articles/{id}
-    
-    DELETE /api/articles/{id}
+
 
 You can test them using postman or any other rest client.
-
-## Learn more
-
-You can find the tutorial for this application on my blog -
-
-<https://www.callicoder.com/kotlin-spring-boot-mysql-jpa-hibernate-rest-api-tutorial/>
