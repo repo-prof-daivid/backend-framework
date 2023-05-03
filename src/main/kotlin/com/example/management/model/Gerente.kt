@@ -6,22 +6,27 @@ import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
-import javax.persistence.ManyToMany
 import javax.persistence.OneToMany
+import javax.persistence.OneToOne
 import javax.validation.constraints.NotBlank
 
-/**
- * Created by rajeevkumarsingh on 05/10/17.
- */
 @Lazy
 @Entity
-data class Article (
+data class Gerente(
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: Long = 0,
-
+    val matricula: Long = 0,
     @get: NotBlank
-    val title: String = "",
-
+    val name: String,
     @get: NotBlank
-    val content: String = "",
+    val setor: String,
+    @get: NotBlank
+    val telefone: String,
+    @get: NotBlank
+    val email: String,
+    @get: NotBlank
+    val pwd: String,
+    @OneToMany(targetEntity = Funcionario::class)
+    val funcionarios: List<Funcionario>,
+    @OneToMany(targetEntity = Tarefa::class)
+    val tarefas: List<Tarefa>
 )
