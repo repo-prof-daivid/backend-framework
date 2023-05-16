@@ -2,8 +2,7 @@ package com.example.management.controller
 
 import com.example.management.model.entity.Gerente
 import com.example.management.model.request.Login
-import com.example.management.model.response.ErrorResponse
-import com.example.management.model.response.SuccessResponse
+import com.example.management.model.response.BaseResponse
 import com.example.management.repository.GerenteRepository
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
@@ -56,7 +55,7 @@ class GerenteController(
     }
 
     @PostMapping("/login")
-    fun login(@Valid @RequestBody login: Login): ResponseEntity<Any> {
+    fun login(@Valid @RequestBody login: Login): ResponseEntity<BaseResponse<Gerente?>> {
         val gerente = login.email?.let {
             gerenteRepository.findByEmail(it)
         } ?: run {
@@ -66,33 +65,42 @@ class GerenteController(
         }
         gerente?.let { gerente ->
             if (login.pwd == gerente.pwd) {
-                return createSuccessResponse(data = gerente)
+                return createResponse(
+                    isError = false,
+                    data = gerente,
+                    code = HttpStatus.OK
+                )
             } else {
-                return createErrorResponse()
+                return createResponse()
             }
         } ?: run {
-            return createErrorResponse()
+            return createResponse()
         }
     }
 
-    private fun createErrorResponse(
+    private fun <T> createResponse(
         message: String = "Credenciais Inválidas!",
-        code: HttpStatus = HttpStatus.UNAUTHORIZED
-    ): ResponseEntity<Any> {
-        return ResponseEntity.status(code)
-            .body(
-                ErrorResponse(
+        code: HttpStatus = HttpStatus.UNAUTHORIZED,
+        data: T? = null,
+        isError: Boolean = true
+    ): ResponseEntity<BaseResponse<T>>{
+        return if (isError) {
+            ResponseEntity.status(code).body(
+                BaseResponse(
+                    isError = true,
                     errorMessage = message,
-                    errorCode = code.value()
+                    code = code.value()
                 )
             )
-    }
-
-    private fun <T> createSuccessResponse(
-        message: String = "Login realizado com sucesso!",
-        data: T
-    ): ResponseEntity<Any> {
-        return ResponseEntity.ok(SuccessResponse(message = message, data = data))
+        } else {
+            ResponseEntity.ok(
+                BaseResponse(
+                    isError = false,
+                    data = data,
+                    code = code.value()
+                )
+            )
+        }
     }
 
 }
