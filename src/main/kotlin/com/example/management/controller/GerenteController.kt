@@ -16,11 +16,6 @@ class GerenteController(
     private val gerenteRepository: GerenteRepository
 ) {
 
-    @GetMapping("/listaGerentes")
-    fun getGerentes(): List<Gerente> =
-        gerenteRepository.findAll()
-
-
     @PostMapping("/gerente")
     fun createNewGerente(@Valid @RequestBody gerente: Gerente): Gerente =
         gerenteRepository.save(gerente)
