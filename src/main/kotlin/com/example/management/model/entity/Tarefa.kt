@@ -20,8 +20,8 @@ data class Tarefa(
     @JsonIgnore
     @ManyToOne(fetch= FetchType.LAZY, targetEntity = Gerente::class)
     @JoinColumn(name="gerenteId")
-    val gerente: Gerente?,
+    var gerente: Gerente?,
     @ManyToOne(fetch=FetchType.LAZY, targetEntity = Funcionario::class)
     @JoinColumn(name="funcionarioId")
-    val funcionario: Funcionario? = null
+    var funcionario: Funcionario? = null
 )
