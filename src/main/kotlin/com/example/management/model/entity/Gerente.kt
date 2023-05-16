@@ -1,4 +1,4 @@
-package com.example.management.model.request
+package com.example.management.model.entity
 
 import org.springframework.context.annotation.Lazy
 import javax.persistence.Entity
@@ -22,9 +22,5 @@ data class Gerente(
     @get: NotBlank
     val email: String,
     @get: NotBlank
-    val pwd: String,
-    @OneToMany(targetEntity = Funcionario::class)
-    val funcionarios: List<Funcionario>,
-    @OneToMany(targetEntity = Tarefa::class)
-    val tarefas: List<Tarefa>
+    val pwd: String
 )

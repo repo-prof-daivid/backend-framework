@@ -1,6 +1,6 @@
 package com.example.management.controller
 
-import com.example.management.model.request.Gerente
+import com.example.management.model.entity.Gerente
 import com.example.management.model.request.Login
 import com.example.management.model.response.ErrorResponse
 import com.example.management.model.response.SuccessResponse
@@ -46,9 +46,7 @@ class GerenteController(
                     pwd = newGerente.pwd,
                     email = newGerente.email,
                     telefone = newGerente.telefone,
-                    setor = newGerente.setor,
-                    funcionarios = newGerente.funcionarios,
-                    tarefas = newGerente.tarefas
+                    setor = newGerente.setor
                 )
             ResponseEntity.ok().body(gerenteRepository.save(updatedGerente))
         }.orElse(ResponseEntity.notFound().build())
