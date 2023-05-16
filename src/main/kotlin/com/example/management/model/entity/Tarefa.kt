@@ -1,5 +1,6 @@
 package com.example.management.model.entity
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import org.springframework.context.annotation.Lazy
 import javax.persistence.*
 import javax.validation.constraints.NotBlank
@@ -16,10 +17,11 @@ data class Tarefa(
     val descricao: String,
     @get: NotBlank
     val status: String,
-    @ManyToOne(fetch= FetchType.LAZY)
+    @JsonIgnore
+    @ManyToOne(fetch= FetchType.LAZY, targetEntity = Gerente::class)
     @JoinColumn(name="gerenteId")
-    val gerente: Gerente,
-    @ManyToOne(fetch=FetchType.LAZY)
+    val gerente: Gerente?,
+    @ManyToOne(fetch=FetchType.LAZY, targetEntity = Funcionario::class)
     @JoinColumn(name="funcionarioId")
-    val funcionario: Gerente
+    val funcionario: Funcionario? = null
 )

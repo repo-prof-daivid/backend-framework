@@ -1,5 +1,6 @@
 package com.example.management.model.entity
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import org.springframework.context.annotation.Lazy
 import javax.persistence.*
 import javax.validation.constraints.NotBlank
@@ -15,7 +16,8 @@ data class Funcionario(
     val telefone: String,
     @get: NotBlank
     val email: String,
+    @JsonIgnore
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="gerenteId")
-    val gerente: Gerente
+    val gerente: Gerente? = null
 )

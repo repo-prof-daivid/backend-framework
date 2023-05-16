@@ -1,11 +1,8 @@
 package com.example.management.model.entity
 
+import org.hibernate.annotations.Fetch
 import org.springframework.context.annotation.Lazy
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.OneToMany
+import javax.persistence.*
 import javax.validation.constraints.NotBlank
 
 @Lazy
@@ -14,13 +11,13 @@ data class Gerente(
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     val matricula: Long = 0,
     @get: NotBlank
-    val name: String,
+    val nome: String? = null,
     @get: NotBlank
-    val setor: String,
+    val setor: String? = null,
     @get: NotBlank
-    val telefone: String,
+    val telefone: String? = null,
     @get: NotBlank
-    val email: String,
+    val email: String? = null,
     @get: NotBlank
-    val pwd: String
+    val pwd: String? = null
 )

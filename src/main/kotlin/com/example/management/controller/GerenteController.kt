@@ -37,7 +37,7 @@ class GerenteController(
         return gerenteRepository.findById(matriculaGerente).map { existingGerente ->
             val updatedGerente: Gerente = existingGerente
                 .copy(
-                    name = newGerente.name,
+                    nome = newGerente.nome,
                     pwd = newGerente.pwd,
                     email = newGerente.email,
                     telefone = newGerente.telefone,
