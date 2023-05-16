@@ -46,14 +46,6 @@ class GerenteController(
         }.orElse(ResponseEntity.notFound().build())
     }
 
-    @DeleteMapping("/gerente/{matriculaGerente}")
-    fun deleteArticleById(@PathVariable(value = "matriculaGerente") matriculaGerente: Long): ResponseEntity<Void> {
-        return gerenteRepository.findById(matriculaGerente).map { gerente ->
-            gerenteRepository.delete(gerente)
-            ResponseEntity<Void>(HttpStatus.OK)
-        }.orElse(ResponseEntity.notFound().build())
-    }
-
     @PostMapping("/login")
     fun login(@Valid @RequestBody login: Login): ResponseEntity<BaseResponse<Gerente?>> {
         val gerente = login.email?.let {
@@ -65,42 +57,19 @@ class GerenteController(
         }
         gerente?.let { gerente ->
             if (login.pwd == gerente.pwd) {
-                return createResponse(
+                return BaseResponse.createResponse(
                     isError = false,
                     data = gerente,
                     code = HttpStatus.OK
                 )
             } else {
-                return createResponse()
+                return BaseResponse.createResponse()
             }
         } ?: run {
-            return createResponse()
+            return BaseResponse.createResponse()
         }
     }
 
-    private fun <T> createResponse(
-        message: String = "Credenciais Inválidas!",
-        code: HttpStatus = HttpStatus.UNAUTHORIZED,
-        data: T? = null,
-        isError: Boolean = true
-    ): ResponseEntity<BaseResponse<T>>{
-        return if (isError) {
-            ResponseEntity.status(code).body(
-                BaseResponse(
-                    isError = true,
-                    errorMessage = message,
-                    code = code.value()
-                )
-            )
-        } else {
-            ResponseEntity.ok(
-                BaseResponse(
-                    isError = false,
-                    data = data,
-                    code = code.value()
-                )
-            )
-        }
-    }
+
 
 }
