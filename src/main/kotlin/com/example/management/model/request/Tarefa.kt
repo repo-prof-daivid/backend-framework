@@ -1,4 +1,4 @@
-package com.example.management.model
+package com.example.management.model.request
 
 import org.springframework.context.annotation.Lazy
 import javax.persistence.Entity
