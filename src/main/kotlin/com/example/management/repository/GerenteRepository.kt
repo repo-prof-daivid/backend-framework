@@ -1,6 +1,6 @@
 package com.example.management.repository
 
-import com.example.management.model.request.Gerente
+import com.example.management.model.entity.Gerente
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
