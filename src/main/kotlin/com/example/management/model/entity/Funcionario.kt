@@ -11,11 +11,11 @@ data class Funcionario(
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     val matricula: Long = 0,
     @get: NotBlank
-    val nome: String,
+    val nome: String? = null,
     @get: NotBlank
-    val telefone: String,
+    val telefone: String? = null,
     @get: NotBlank
-    val email: String,
+    val email: String? = null,
     @JsonIgnore
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="gerenteId")
